@@ -1,0 +1,14 @@
+<h1>Login Form Without Bootstrap</h1>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div>
+        <label for="">Email : </label>
+        <input type="text" id="email" formControlName='email'>
+    </div>
+    <div>
+        <label for="">Password : </label>
+        <input type="password" id="password" formControlName='password'>
+    </div>
+    <div>
+        <button>Login</button>
+    </div>
+</form>
