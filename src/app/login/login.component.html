@@ -1,14 +1,25 @@
 <h1>Login Form Without Bootstrap</h1>
-<form [formGroup]="loginForm" (ngSubmit)="login()">
+<form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
     <div>
         <label for="">Email : </label>
         <input type="text" id="email" formControlName='email'>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+            <div *ngIf="email.errors?.required">
+                Email is required.
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <label for=" ">Password : </label>
+        <input type="password " id="password " formControlName='password'>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+            <div *ngIf="password.errors?.required">
+                Password is required.
+            </div>
+        </div>
     </div>
     <div>
-        <label for="">Password : </label>
-        <input type="password" id="password" formControlName='password'>
-    </div>
-    <div>
-        <button>Login</button>
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </div>
 </form>

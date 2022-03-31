@@ -1,28 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Login } from '../login';
+import { Component, OnInit } from "@angular/core";
+import {
+  EmailValidator,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { Login } from "../login";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-logins : Login[] = [];
-loginForm :FormGroup = new FormGroup ({
-email : new FormControl,
-password : new FormControl
-});
-  constructor() { }
+  logins: Login[] = [];
+  loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    })
   }
-login(){
-  if(this.loginForm.value.email === 'admin@gmail.com' && this.loginForm.value.password ==="123123"){
-   alert ( "Dang nhap thanh cong")
+
+  login() {
+    console.log(this.loginForm.value)
   }
-  else{
-    alert ("Tai khoan hoac mat khau sai")
+
+  get email() {
+    return this.loginForm.get('email');
   }
-}
+  
+  get password(){
+    return this.loginForm.get('password');
+  }
 }
