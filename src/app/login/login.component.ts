@@ -27,7 +27,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value)
+    if(this.loginForm.value.email === "admin@gmail.com" && this.loginForm.value.password === "123123"){
+      alert ("Dang nhap thanh cong");
+    }
+    else {
+      alert ("Sai tai khoan hoac mat khau");
+    }
   }
 
   get email() {
